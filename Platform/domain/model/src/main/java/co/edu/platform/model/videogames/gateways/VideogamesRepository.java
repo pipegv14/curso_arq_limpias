@@ -6,7 +6,7 @@ import co.edu.platform.model.videogames.services.VideogameRequest;
 import java.util.List;
 
 public interface VideogamesRepository {
-    public Videogames insertVideogame(VideogameRequest videogameRequest);
+    Videogames insertVideogame(VideogameRequest videogameRequest);
 
     List<Videogames> getALlVideogames();
 }

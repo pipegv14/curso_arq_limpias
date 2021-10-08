@@ -18,11 +18,19 @@ public class PlatformUseCase {
     private final VideogamesRepository repositoryVideogame;
 
 
-    public Players savePlayer(@NonNull PlayerRequest playerRequest) {
-        return repositoryPlayer.insertPlayer(playerRequest);
+    public Players savePlayer(PlayerRequest playerRequest) {
+        if (!playerRequest.getName().isEmpty()) {
+            if (playerRequest.getNickname().contains("/^[0-9]$/")) {
+                return repositoryPlayer.insertPlayer(playerRequest);
+            } else {
+                throw new RuntimeException("El nickname debe contener al menos un numero");
+            }
+        } else {
+            throw new RuntimeException("El jugador no contiene un nombre");
+        }
     }
 
-    public Videogames saveVideogame(@NonNull VideogameRequest videogameRequest) {
+    public Videogames saveVideogame(VideogameRequest videogameRequest) {
         return repositoryVideogame.insertVideogame(videogameRequest);
     }
 
@@ -30,7 +38,7 @@ public class PlatformUseCase {
         return repositoryPlayer.getAllPlayers();
     }
 
-    public Players assignVideogame(@NonNull AssignVideogameRequest assignRequest){
+    public Players assignVideogame(@NonNull AssignVideogameRequest assignRequest) {
         return repositoryPlayer.assignVideogame(assignRequest);
     }
 }

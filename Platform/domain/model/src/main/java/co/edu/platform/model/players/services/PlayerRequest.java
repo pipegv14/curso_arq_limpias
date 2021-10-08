@@ -10,4 +10,12 @@ public class PlayerRequest {
     private String nickname;
     private String city;
     private String country;
+
+    public PlayerRequest(String name, String description, String nickname, String city, String country) {
+        this.name = name;
+        this.description = description;
+        this.nickname = nickname;
+        this.city = city;
+        this.country = country;
+    }
 }
