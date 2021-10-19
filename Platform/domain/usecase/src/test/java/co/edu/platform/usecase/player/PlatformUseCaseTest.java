@@ -61,7 +61,7 @@ public class PlatformUseCaseTest {
     void verifyNotNullNameTest() {
         this.playerRequest = new PlayerRequest("", "fifa player", "", "Medellin", "Colombia");
         try {
-            Players result = platformUseCase.savePlayer(this.playerRequest);
+            platformUseCase.savePlayer(this.playerRequest);
         } catch (RuntimeException ex) {
             assertEquals("El jugador no contiene un nombre", ex.getMessage());
         }
@@ -71,7 +71,7 @@ public class PlatformUseCaseTest {
     void verifyNickNameContainsAnyNumber() {
         this.playerRequest = new PlayerRequest("Felipe", "fifa player", "pipe", "Medellin", "Colombia");
         try {
-            Players result = platformUseCase.savePlayer(this.playerRequest);
+            platformUseCase.savePlayer(this.playerRequest);
         } catch (RuntimeException ex) {
             assertEquals("El nickname debe contener al menos un numero", ex.getMessage());
         }
@@ -80,8 +80,8 @@ public class PlatformUseCaseTest {
     @Test
     void verifyModalityVideogame() {
         this.videogameRequest = new VideogameRequest("NBA", "basketball video game", "competitiva");
-        Videogames result = platformUseCase.saveVideogame(this.videogameRequest);
-        assertThat(result.getModality(),
+        platformUseCase.saveVideogame(this.videogameRequest);
+        assertThat(this.videogameRequest.getModality(),
                 either(containsString("individual")).
                         or(containsString("competitiva")).
                         or(containsString("cooperativa")));

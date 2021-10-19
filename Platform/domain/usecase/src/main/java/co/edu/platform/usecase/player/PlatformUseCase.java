@@ -20,7 +20,8 @@ public class PlatformUseCase {
 
     public Players savePlayer(PlayerRequest playerRequest) {
         if (!playerRequest.getName().isEmpty()) {
-            if (playerRequest.getNickname().contains("/^[0-9]$/")) {
+            //Valido por medio de la siguiente expresion regular que el nickname contenga al menos un número
+            if (playerRequest.getNickname().matches("^(\\d?[a-zA-Z])*(\\d+)([a-zA-Z]\\d?)*$")) {
                 return repositoryPlayer.insertPlayer(playerRequest);
             } else {
                 throw new RuntimeException("El nickname debe contener al menos un numero");
